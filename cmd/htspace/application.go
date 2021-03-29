@@ -25,9 +25,18 @@ func (me *Application) Router() *http.ServeMux {
 
 func (me *Application) serveRoutes(w http.ResponseWriter, r *http.Request) {
 	// Default to the passenger role
-	var role spaceflight.Passenger
-	me.sys.Use(&role)
+	var user spaceflight.User
+	role := user.Use(me.sys, getRole(r))
 
-	routes := role.ListRoutes()
+	routes, _ := role.ListRoutes()
 	json.NewEncoder(w).Encode(routes)
+}
+
+func getRole(r *http.Request) spaceflight.Role {
+	switch r.URL.Query().Get("role") {
+	case "pilot":
+		return &spaceflight.Pilot{}
+	default:
+		return &spaceflight.Passenger{}
+	}
 }

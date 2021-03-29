@@ -2,8 +2,26 @@ package spaceflight
 
 import "testing"
 
-func Test_Service_Use(t *testing.T) {
-	var srv System
-	var role Pilot
-	srv.Use(&role)
+func Test_Pilot(t *testing.T) {
+	var usr User
+	role := usr.Use(NewSystem(), &Pilot{})
+
+	if _, err := role.ListRoutes(); err != nil {
+		t.Fatal(err)
+	}
+	if err := role.PlanRoute(Route{}); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func Test_Passenger(t *testing.T) {
+	var user User
+	role := user.Use(NewSystem(), &Passenger{})
+
+	if _, err := role.ListRoutes(); err != nil {
+		t.Fatal(err)
+	}
+	if err := role.PlanRoute(Route{}); err == nil {
+		t.Fatal("expected unauthorized")
+	}
 }
