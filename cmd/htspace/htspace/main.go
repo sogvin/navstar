@@ -1,3 +1,4 @@
+// Command htspace runs the htspace.Application as a web server.
 package main
 
 import (

@@ -1,3 +1,4 @@
+// Package htspace exposes the spaceflight system via HTTP.
 package htspace
 
 import (
