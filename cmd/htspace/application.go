@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/gregoryv/sogvin/example/spaceflight"
+	"github.com/gregoryv/spaceflight"
 )
 
 func NewApplication(sys *spaceflight.System) *Application {
