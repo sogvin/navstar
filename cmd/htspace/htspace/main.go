@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"github.com/gregoryv/cmdline"
-	"github.com/gregoryv/spaceflight"
-	"github.com/gregoryv/spaceflight/cmd/htspace"
+	"github.com/gregoryv/navstar"
+	"github.com/gregoryv/navstar/cmd/htspace"
 	"github.com/gregoryv/wolf"
 )
 
@@ -33,7 +33,7 @@ func run(cmd wolf.Command) {
 		cmd.Exit(1)
 
 	default:
-		sys := spaceflight.NewSystem()
+		sys := navstar.NewSystem()
 		app := htspace.NewApplication(sys)
 		log.Println("listening on", bind)
 		err := http.ListenAndServe(bind, app.Router())

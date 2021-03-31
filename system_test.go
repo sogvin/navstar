@@ -1,4 +1,4 @@
-package spaceflight
+package navstar
 
 import "testing"
 

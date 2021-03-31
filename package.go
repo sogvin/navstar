@@ -1,4 +1,8 @@
 /*
-Package spaceflight provides a system for planning space travel.
+Package navstar provides a system for planning space travel.
 */
-package spaceflight
+package navstar
+
+import "errors"
+
+var ErrUnauthorized = errors.New("unauthorized")

@@ -1,6 +1,4 @@
-package spaceflight
-
-import "errors"
+package navstar
 
 type Role interface {
 	setUser(v *User)
@@ -47,7 +45,3 @@ func (me *User) listRoutes() ([]Route, error) {
 	// implement list routes
 	return nil, nil
 }
-
-// ----------------------------------------
-
-var ErrUnauthorized = errors.New("unauthorized")

@@ -1,22 +1,22 @@
-// Package htspace exposes the spaceflight system via HTTP.
+// Package htspace exposes the navstar system via HTTP.
 package htspace
 
 import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/gregoryv/spaceflight"
+	"github.com/gregoryv/navstar"
 )
 
-func NewApplication(sys *spaceflight.System) *Application {
+func NewApplication(sys *navstar.System) *Application {
 	return &Application{sys: sys}
 }
 
 type Application struct {
-	sys *spaceflight.System
+	sys *navstar.System
 }
 
-// Router returns a router providing HTTP access to the spaceflight
+// Router returns a router providing HTTP access to the navstar
 // system.
 func (me *Application) Router() *http.ServeMux {
 	m := http.NewServeMux()
@@ -26,18 +26,18 @@ func (me *Application) Router() *http.ServeMux {
 
 func (me *Application) serveRoutes(w http.ResponseWriter, r *http.Request) {
 	// Default to the passenger role
-	var user spaceflight.User
+	var user navstar.User
 	role := user.Use(me.sys, getRole(r))
 
 	routes, _ := role.ListRoutes()
 	json.NewEncoder(w).Encode(routes)
 }
 
-func getRole(r *http.Request) spaceflight.Role {
+func getRole(r *http.Request) navstar.Role {
 	switch r.URL.Query().Get("role") {
 	case "pilot":
-		return &spaceflight.Pilot{}
+		return &navstar.Pilot{}
 	default:
-		return &spaceflight.Passenger{}
+		return &navstar.Passenger{}
 	}
 }

@@ -1,3 +1,3 @@
-package spaceflight
+package navstar
 
 type Route struct{}

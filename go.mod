@@ -1,4 +1,4 @@
-module github.com/gregoryv/spaceflight
+module github.com/gregoryv/navstar
 
 go 1.16
 
