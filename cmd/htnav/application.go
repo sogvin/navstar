@@ -1,5 +1,5 @@
-// Package htspace exposes the navstar system via HTTP.
-package htspace
+// Package htnav exposes the navstar system via HTTP.
+package htnav
 
 import (
 	"encoding/json"

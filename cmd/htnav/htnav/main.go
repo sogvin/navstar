@@ -1,4 +1,4 @@
-// Command htspace runs the htspace.Application as a web server.
+// Command htnav runs the htnav.Application as a web server.
 package main
 
 import (
@@ -7,7 +7,7 @@ import (
 
 	"github.com/gregoryv/cmdline"
 	"github.com/gregoryv/navstar"
-	"github.com/gregoryv/navstar/cmd/htspace"
+	"github.com/gregoryv/navstar/cmd/htnav"
 	"github.com/gregoryv/wolf"
 )
 
@@ -34,7 +34,7 @@ func run(cmd wolf.Command) {
 
 	default:
 		sys := navstar.NewSystem()
-		app := htspace.NewApplication(sys)
+		app := htnav.NewApplication(sys)
 		log.Println("listening on", bind)
 		err := http.ListenAndServe(bind, app.Router())
 		if err != nil {
