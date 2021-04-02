@@ -1,8 +1,8 @@
 package navstar
 
 type Role interface {
-	SubmitFlightplan(route Route) error
-	ListFlightplans() ([]Route, error)
+	SubmitFlightplan(route Flightplan) error
+	ListFlightplans() ([]Flightplan, error)
 	setUser(v *User)
 }
 
@@ -12,11 +12,11 @@ type Pilot struct {
 	*User
 }
 
-func (me *Pilot) SubmitFlightplan(v Route) error {
+func (me *Pilot) SubmitFlightplan(v Flightplan) error {
 	return me.submitFlightplan(v)
 }
 
-func (me *Pilot) ListFlightplans() ([]Route, error) {
+func (me *Pilot) ListFlightplans() ([]Flightplan, error) {
 	return me.listFlightplans()
 }
 
@@ -31,11 +31,11 @@ type Passenger struct {
 }
 
 // SubmitFlightplan always returns ErrUnauthorized
-func (me *Passenger) SubmitFlightplan(v Route) error {
+func (me *Passenger) SubmitFlightplan(v Flightplan) error {
 	return ErrUnauthorized
 }
 
-func (me *Passenger) ListFlightplans() ([]Route, error) {
+func (me *Passenger) ListFlightplans() ([]Flightplan, error) {
 	return me.listFlightplans()
 }
 

@@ -1,3 +1,3 @@
 package navstar
 
-type Route struct{}
+type Flightplan struct{}

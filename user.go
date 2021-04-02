@@ -14,12 +14,12 @@ func (me *User) Use(v *System, role Role) Role {
 
 // Keep all feature methods private and expose only through roles
 
-func (me *User) submitFlightplan(route Route) error {
+func (me *User) submitFlightplan(route Flightplan) error {
 	// implement...
 	return nil
 }
 
-func (me *User) listFlightplans() ([]Route, error) {
+func (me *User) listFlightplans() ([]Flightplan, error) {
 	// implement list routes
 	return nil, nil
 }
