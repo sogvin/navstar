@@ -23,3 +23,17 @@ func (me *User) listFlightplans() ([]Flightplan, error) {
 	// implement list routes
 	return nil, nil
 }
+
+// ----------------------------------------
+
+// User implements Role interface with all feature methods returning
+// ErrUnauthorized. Role implementations that embed the user only need
+// to implement feature methods that are allowed.
+
+func (me *User) SubmitFlightplan(v Flightplan) error {
+	return ErrUnauthorized
+}
+
+func (me *User) ListFlightplans() ([]Flightplan, error) {
+	return nil, ErrUnauthorized
+}

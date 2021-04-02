@@ -30,11 +30,6 @@ type Crew struct {
 	*User
 }
 
-// SubmitFlightplan always returns ErrUnauthorized
-func (me *Crew) SubmitFlightplan(v Flightplan) error {
-	return ErrUnauthorized
-}
-
 func (me *Crew) ListFlightplans() ([]Flightplan, error) {
 	return me.listFlightplans()
 }
@@ -47,11 +42,6 @@ func (me *Crew) setUser(v *User) {
 
 type Passenger struct {
 	*User
-}
-
-// SubmitFlightplan always returns ErrUnauthorized
-func (me *Passenger) SubmitFlightplan(v Flightplan) error {
-	return ErrUnauthorized
 }
 
 func (me *Passenger) ListFlightplans() ([]Flightplan, error) {
