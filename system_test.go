@@ -9,7 +9,7 @@ func Test_Pilot(t *testing.T) {
 	if _, err := role.ListRoutes(); err != nil {
 		t.Fatal(err)
 	}
-	if err := role.PlanRoute(Route{}); err != nil {
+	if err := role.SubmitFlightplan(Route{}); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -21,7 +21,7 @@ func Test_Passenger(t *testing.T) {
 	if _, err := role.ListRoutes(); err != nil {
 		t.Fatal(err)
 	}
-	if err := role.PlanRoute(Route{}); err == nil {
+	if err := role.SubmitFlightplan(Route{}); err == nil {
 		t.Fatal("expected unauthorized")
 	}
 }
