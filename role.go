@@ -26,6 +26,25 @@ func (me *Pilot) setUser(v *User) {
 
 // ----------------------------------------
 
+type Crew struct {
+	*User
+}
+
+// SubmitFlightplan always returns ErrUnauthorized
+func (me *Crew) SubmitFlightplan(v Flightplan) error {
+	return ErrUnauthorized
+}
+
+func (me *Crew) ListFlightplans() ([]Flightplan, error) {
+	return me.listFlightplans()
+}
+
+func (me *Crew) setUser(v *User) {
+	me.User = v
+}
+
+// ----------------------------------------
+
 type Passenger struct {
 	*User
 }
