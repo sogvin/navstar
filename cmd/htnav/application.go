@@ -29,7 +29,7 @@ func (me *Application) serveRoutes(w http.ResponseWriter, r *http.Request) {
 	var user navstar.User
 	role := user.Use(me.sys, getRole(r))
 
-	routes, _ := role.ListRoutes()
+	routes, _ := role.ListFlightplans()
 	json.NewEncoder(w).Encode(routes)
 }
 

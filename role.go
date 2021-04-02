@@ -2,7 +2,7 @@ package navstar
 
 type Role interface {
 	SubmitFlightplan(route Route) error
-	ListRoutes() ([]Route, error)
+	ListFlightplans() ([]Route, error)
 	setUser(v *User)
 }
 
@@ -16,7 +16,7 @@ func (me *Pilot) SubmitFlightplan(v Route) error {
 	return me.submitFlightplan(v)
 }
 
-func (me *Pilot) ListRoutes() ([]Route, error) {
+func (me *Pilot) ListFlightplans() ([]Route, error) {
 	return me.listRoutes()
 }
 
@@ -35,7 +35,7 @@ func (me *Passenger) SubmitFlightplan(v Route) error {
 	return ErrUnauthorized
 }
 
-func (me *Passenger) ListRoutes() ([]Route, error) {
+func (me *Passenger) ListFlightplans() ([]Route, error) {
 	return me.listRoutes()
 }
 
