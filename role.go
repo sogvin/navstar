@@ -1,26 +1,27 @@
 package navstar
 
 type Role interface {
-	setUser(v *User)
 	PlanRoute(route Route) error
 	ListRoutes() ([]Route, error)
+	setUser(v *User)
 }
+
+// ----------------------------------------
 
 type Pilot struct{ *User }
 
-func (me *Pilot) setUser(v *User) { me.User = v }
-
 func (me *Pilot) PlanRoute(v Route) error      { return me.planRoute(v) }
 func (me *Pilot) ListRoutes() ([]Route, error) { return me.listRoutes() }
+func (me *Pilot) setUser(v *User)              { me.User = v }
 
 // ----------------------------------------
 
 type Passenger struct{ *User }
 
-func (me *Passenger) setUser(v *User) { me.User = v }
-
+// PlanRoute always returns ErrUnauthorized
 func (me *Passenger) PlanRoute(v Route) error      { return ErrUnauthorized }
 func (me *Passenger) ListRoutes() ([]Route, error) { return me.listRoutes() }
+func (me *Passenger) setUser(v *User)              { me.User = v }
 
 // ----------------------------------------
 
@@ -35,6 +36,8 @@ func (me *User) Use(v *System, role Role) Role {
 	role.setUser(me)
 	return role
 }
+
+// Keep all feature methods private and expose only through roles
 
 func (me *User) planRoute(route Route) error {
 	// implement...
