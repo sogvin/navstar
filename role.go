@@ -13,7 +13,7 @@ type Pilot struct {
 }
 
 func (me *Pilot) SubmitFlightplan(v Route) error {
-	return me.planRoute(v)
+	return me.submitFlightplan(v)
 }
 
 func (me *Pilot) ListRoutes() ([]Route, error) {
