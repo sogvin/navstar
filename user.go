@@ -6,10 +6,9 @@ type User struct {
 	sys *System
 }
 
-func (me *User) Use(v *System, role Role) Role {
+func (me *User) Use(v *System, role Role) {
 	me.sys = v
 	role.setUser(me)
-	return role
 }
 
 // Keep all feature methods private and expose only through roles

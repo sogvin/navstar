@@ -3,8 +3,9 @@ package navstar
 import "testing"
 
 func Test_Pilot(t *testing.T) {
-	var usr User
-	role := usr.Use(NewSystem(), &Pilot{})
+	var role Pilot
+	var user User
+	user.Use(NewSystem(), &role)
 
 	if _, err := role.ListFlightplans(); err != nil {
 		t.Fatal(err)
@@ -15,8 +16,9 @@ func Test_Pilot(t *testing.T) {
 }
 
 func Test_Passenger(t *testing.T) {
+	var role Passenger
 	var user User
-	role := user.Use(NewSystem(), &Passenger{})
+	user.Use(NewSystem(), &role)
 
 	if _, err := role.ListFlightplans(); err != nil {
 		t.Fatal(err)
