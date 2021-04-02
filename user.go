@@ -19,7 +19,7 @@ func (me *User) submitFlightplan(route Route) error {
 	return nil
 }
 
-func (me *User) listRoutes() ([]Route, error) {
+func (me *User) listFlightplans() ([]Route, error) {
 	// implement list routes
 	return nil, nil
 }

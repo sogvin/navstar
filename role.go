@@ -17,7 +17,7 @@ func (me *Pilot) SubmitFlightplan(v Route) error {
 }
 
 func (me *Pilot) ListFlightplans() ([]Route, error) {
-	return me.listRoutes()
+	return me.listFlightplans()
 }
 
 func (me *Pilot) setUser(v *User) {
@@ -36,7 +36,7 @@ func (me *Passenger) SubmitFlightplan(v Route) error {
 }
 
 func (me *Passenger) ListFlightplans() ([]Route, error) {
-	return me.listRoutes()
+	return me.listFlightplans()
 }
 
 func (me *Passenger) setUser(v *User) {
