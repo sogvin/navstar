@@ -8,23 +8,23 @@ import (
 	"github.com/gregoryv/navstar"
 )
 
-func NewApplication(sys *navstar.System) *Application {
-	return &Application{sys: sys}
+func NewHttpRouter(sys *navstar.System) *HttpRouter {
+	mux := http.NewServeMux()
+	hr := HttpRouter{sys: sys, mux: mux}
+	mux.HandleFunc("/routes", hr.serveRoutes)
+	return &hr
 }
 
-type Application struct {
+type HttpRouter struct {
 	sys *navstar.System
+	mux *http.ServeMux
 }
 
-// Router returns a router providing HTTP access to the navstar
-// system.
-func (me *Application) Router() *http.ServeMux {
-	m := http.NewServeMux()
-	m.HandleFunc("/routes", me.serveRoutes)
-	return m
+func (me *HttpRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	me.mux.ServeHTTP(w, r)
 }
 
-func (me *Application) serveRoutes(w http.ResponseWriter, r *http.Request) {
+func (me *HttpRouter) serveRoutes(w http.ResponseWriter, r *http.Request) {
 	var role navstar.Role = getRole(r)
 	var user navstar.User
 	user.Use(me.sys, role)

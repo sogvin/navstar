@@ -34,9 +34,9 @@ func run(cmd wolf.Command) {
 
 	default:
 		sys := navstar.NewSystem()
-		app := htapi.NewApplication(sys)
+		router := htapi.NewHttpRouter(sys)
 		log.Println("listening on", bind)
-		err := http.ListenAndServe(bind, app.Router())
+		err := http.ListenAndServe(bind, router)
 		if err != nil {
 			log.Println(err)
 			cmd.Exit(1)
