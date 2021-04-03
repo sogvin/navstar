@@ -11,6 +11,9 @@ func (me *User) Use(v *System, role Role) {
 	role.setUser(me)
 }
 
+// noop, here to satisfy Role interface
+func (me *User) setUser(v *User) {}
+
 // Keep all feature methods private and expose only through roles
 
 func (me *User) submitFlightplan(route Flightplan) error {

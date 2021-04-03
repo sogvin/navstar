@@ -7,7 +7,7 @@ import (
 
 	"github.com/gregoryv/cmdline"
 	"github.com/gregoryv/navstar"
-	"github.com/gregoryv/navstar/cmd/htnav"
+	"github.com/gregoryv/navstar/htapi"
 	"github.com/gregoryv/wolf"
 )
 
@@ -34,7 +34,7 @@ func run(cmd wolf.Command) {
 
 	default:
 		sys := navstar.NewSystem()
-		app := htnav.NewApplication(sys)
+		app := htapi.NewApplication(sys)
 		log.Println("listening on", bind)
 		err := http.ListenAndServe(bind, app.Router())
 		if err != nil {

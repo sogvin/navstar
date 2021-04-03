@@ -1,5 +1,5 @@
-// Package htnav exposes the navstar system via HTTP.
-package htnav
+// Package htapi exposes the navstar system via HTTP.
+package htapi
 
 import (
 	"encoding/json"
@@ -25,8 +25,9 @@ func (me *Application) Router() *http.ServeMux {
 }
 
 func (me *Application) serveRoutes(w http.ResponseWriter, r *http.Request) {
+	var role navstar.Role = getRole(r)
 	var user navstar.User
-	role := user.Use(me.sys, getRole(r))
+	user.Use(me.sys, role)
 
 	routes, _ := role.ListFlightplans()
 	json.NewEncoder(w).Encode(routes)
