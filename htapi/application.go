@@ -10,9 +10,9 @@ import (
 
 func NewRouter(sys *navstar.System) *Router {
 	mux := http.NewServeMux()
-	hr := Router{sys: sys, mux: mux}
-	mux.HandleFunc("/routes", hr.serveRoutes)
-	return &hr
+	r := Router{sys: sys, mux: mux}
+	mux.HandleFunc("/routes", r.serveRoutes)
+	return &r
 }
 
 type Router struct {
