@@ -1,4 +1,4 @@
-// Command htnav runs the htnav.Application as a web server.
+// Command starplan exposes the navstar/htapi through a TCP server
 package main
 
 import (
