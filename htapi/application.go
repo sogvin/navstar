@@ -8,23 +8,23 @@ import (
 	"github.com/gregoryv/navstar"
 )
 
-func NewHttpRouter(sys *navstar.System) *HttpRouter {
+func NewRouter(sys *navstar.System) *Router {
 	mux := http.NewServeMux()
-	hr := HttpRouter{sys: sys, mux: mux}
+	hr := Router{sys: sys, mux: mux}
 	mux.HandleFunc("/routes", hr.serveRoutes)
 	return &hr
 }
 
-type HttpRouter struct {
+type Router struct {
 	sys *navstar.System
 	mux *http.ServeMux
 }
 
-func (me *HttpRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (me *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	me.mux.ServeHTTP(w, r)
 }
 
-func (me *HttpRouter) serveRoutes(w http.ResponseWriter, r *http.Request) {
+func (me *Router) serveRoutes(w http.ResponseWriter, r *http.Request) {
 	var role navstar.Role = getRole(r)
 	var user navstar.User
 	user.Use(me.sys, role)
