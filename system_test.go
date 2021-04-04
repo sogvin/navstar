@@ -14,6 +14,21 @@ func Test_ListFlightplans(t *testing.T) {
 	}
 }
 
+// ----------------------------------------
+
+func Test_SubmitFlightplan(t *testing.T) {
+	okRoles := []Role{&Pilot{}}
+
+	for _, role := range okRoles {
+		var user User
+		user.Use(NewSystem(), role)
+		var plan Flightplan
+		if err := role.SubmitFlightplan(plan); err != nil {
+			t.Error(err)
+		}
+	}
+}
+
 func Test_SubmitFlightplan_fails(t *testing.T) {
 	okRoles := []Role{&Passenger{}}
 
@@ -24,46 +39,5 @@ func Test_SubmitFlightplan_fails(t *testing.T) {
 		if err := role.SubmitFlightplan(plan); err == nil {
 			t.Error("SubmitFlightplan", role, err)
 		}
-	}
-}
-
-func Test_Pilot(t *testing.T) {
-	var role Pilot
-	var user User
-	user.Use(NewSystem(), &role)
-
-	if err := role.SubmitFlightplan(Flightplan{}); err != nil {
-		t.Fatal(err)
-	}
-}
-
-func Test_Passenger(t *testing.T) {
-	var role Passenger
-	var user User
-	user.Use(NewSystem(), &role)
-
-	expectUnauth(t, role.SubmitFlightplan(Flightplan{}))
-}
-
-func Test_Crew(t *testing.T) {
-	var role Crew
-	var user User
-	user.Use(NewSystem(), &role)
-
-	expectUnauth(t, role.SubmitFlightplan(Flightplan{}))
-}
-
-func Test_User(t *testing.T) {
-	var user User
-
-	_, err := user.ListFlightplans()
-	expectUnauth(t, err)
-	expectUnauth(t, user.SubmitFlightplan(Flightplan{}))
-}
-
-func expectUnauth(t *testing.T, err error) {
-	t.Helper()
-	if err != ErrUnauthorized {
-		t.Error("expected ErrUnauthorized:", err)
 	}
 }
