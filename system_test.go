@@ -14,14 +14,15 @@ func Test_ListFlightplans(t *testing.T) {
 	}
 }
 
-func Test_ListFlightplans_fails(t *testing.T) {
-	okRoles := []Role{&User{}}
+func Test_SubmitFlightplan_fails(t *testing.T) {
+	okRoles := []Role{&Passenger{}}
 
 	for _, role := range okRoles {
 		var user User
 		user.Use(NewSystem(), role)
-		if _, err := role.ListFlightplans(); err == nil {
-			t.Error("ListFlightplans", role, err)
+		var plan Flightplan
+		if err := role.SubmitFlightplan(plan); err == nil {
+			t.Error("SubmitFlightplan", role, err)
 		}
 	}
 }
