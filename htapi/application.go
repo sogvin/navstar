@@ -11,7 +11,7 @@ import (
 func NewRouter(sys *navstar.System) *Router {
 	mux := http.NewServeMux()
 	r := Router{sys: sys, mux: mux}
-	mux.HandleFunc("/routes", r.serveRoutes)
+	mux.HandleFunc("/routes", r.serveFlightplans)
 	return &r
 }
 
@@ -24,7 +24,7 @@ func (me *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	me.mux.ServeHTTP(w, r)
 }
 
-func (me *Router) serveRoutes(w http.ResponseWriter, r *http.Request) {
+func (me *Router) serveFlightplans(w http.ResponseWriter, r *http.Request) {
 	var role navstar.Role = getRole(r)
 	var user navstar.User
 	user.Use(me.sys, role)
