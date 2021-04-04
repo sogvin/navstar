@@ -11,7 +11,7 @@ import (
 func NewRouter(sys *navstar.System) *Router {
 	mux := http.NewServeMux()
 	r := Router{sys: sys, mux: mux}
-	mux.HandleFunc("/routes", r.serveFlightplans)
+	mux.HandleFunc("/flightplans", r.serveFlightplans)
 	return &r
 }
 
@@ -29,8 +29,8 @@ func (me *Router) serveFlightplans(w http.ResponseWriter, r *http.Request) {
 	var user navstar.User
 	user.Use(me.sys, role)
 
-	routes, _ := role.ListFlightplans()
-	json.NewEncoder(w).Encode(routes)
+	plans, _ := role.ListFlightplans()
+	json.NewEncoder(w).Encode(plans)
 }
 
 // getRole returns a role implementation based on the incomming
