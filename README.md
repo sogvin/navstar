@@ -11,4 +11,4 @@ https://www.sogvin.com/role_based_service.html
 Download and run the example application with
 
     go get -u github.com/gregoryv/navstar/cmd/...
-	htspace --help
+	starplan --help
