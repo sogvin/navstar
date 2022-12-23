@@ -1,4 +1,4 @@
-module github.com/gregoryv/navstar
+module github.com/sogvin/navstar
 
 go 1.16
 
