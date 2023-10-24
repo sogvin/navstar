@@ -1,8 +1,12 @@
 module github.com/sogvin/navstar
 
-go 1.16
+go 1.21
+
+toolchain go1.21.3
 
 require (
-	github.com/gregoryv/cmdline v0.5.2
-	github.com/gregoryv/wolf v0.7.1-0.20210322070002-85ee5b00b774
+	github.com/gregoryv/cmdline v0.15.2
+	github.com/gregoryv/navstar v0.3.0
 )
+
+require github.com/gregoryv/nexus v0.6.0 // indirect
